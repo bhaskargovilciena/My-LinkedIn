@@ -6,6 +6,8 @@ import com.mylinkedin.first_project.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class UserService {
     private final UserRepository userRepository;
@@ -38,6 +40,10 @@ public class UserService {
         User user = userRepository.findUserByUsername(username);
         if(user == null) throw new UserNotFoundException(username);
         return user;
+    }
+
+    public List<User> getAllUsers() {
+        return userRepository.findAll();
     }
 
     public boolean deleteUser(String username) throws UserNotFoundException {
