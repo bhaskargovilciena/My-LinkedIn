@@ -1,0 +1,22 @@
+package com.mylinkedin.first_project.models;
+
+import com.mylinkedin.first_project.enums.UserProfileStatus;
+import lombok.Data;
+import org.springframework.data.neo4j.core.schema.GeneratedValue;
+import org.springframework.data.neo4j.core.schema.Id;
+import org.springframework.data.neo4j.core.schema.Node;
+
+import java.time.LocalDate;
+
+@Node
+@Data
+public class User {
+    @Id @GeneratedValue
+    private Long id;
+    private String name;
+    private String username;
+    private String password;
+    private LocalDate dateofBirth;
+    private String bio;
+    private UserProfileStatus profileStatus;
+}
