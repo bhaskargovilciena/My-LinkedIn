@@ -1,6 +1,5 @@
 package com.mylinkedin.first_project.models;
 
-import com.mylinkedin.first_project.enums.UserProfileStatus;
 import lombok.Data;
 import org.springframework.data.neo4j.core.schema.GeneratedValue;
 import org.springframework.data.neo4j.core.schema.Id;
