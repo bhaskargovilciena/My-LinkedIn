@@ -18,13 +18,7 @@ public class UserService {
     }
 
     public User createUser(User user) {
-        User currentUser = null;
-        try {
-            currentUser = userRepository.save(user);
-        } catch (RuntimeException e) {
-            throw new RuntimeException(e);
-        }
-        return currentUser;
+        return userRepository.save(user);
     }
 
     public User updateUser(String username, User user) throws UserNotFoundException {

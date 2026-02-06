@@ -16,7 +16,7 @@ public class User {
     private String name;
     private String username;
     private String password;
-    private LocalDate dateofBirth;
+    private LocalDate dateOfBirth;
     private String bio;
-    private UserProfileStatus profileStatus;
+    private String profileStatus;
 }
