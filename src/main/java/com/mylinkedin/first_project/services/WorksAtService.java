@@ -22,11 +22,15 @@ public class WorksAtService {
     public User setWorksAt(String username, String companyName) throws UserNotFoundException, CompanyNotFoundException {
         User user = userService.getUser(username);
         Company company = companyService.getCompany(companyName);
-
         WorksAt worksAt = new WorksAt();
         worksAt.setCompany(company);
         user.setCompany(worksAt);
-
+        userService.updateUser(username, user);
         return user;
+    }
+
+    public WorksAt getWorksAt(String username) throws UserNotFoundException {
+        User user = userService.getUser(username);
+        return user.getCompany();
     }
 }
