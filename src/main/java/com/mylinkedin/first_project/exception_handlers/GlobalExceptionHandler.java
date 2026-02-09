@@ -1,6 +1,7 @@
 package com.mylinkedin.first_project.exception_handlers;
 
 import com.mylinkedin.first_project.exceptions.CompanyNotFoundException;
+import com.mylinkedin.first_project.exceptions.PostNotFoundException;
 import com.mylinkedin.first_project.exceptions.UserNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -31,5 +32,15 @@ public class GlobalExceptionHandler {
         companyResponse.put("timestamp", LocalDateTime.now());
         companyResponse.put("error", "bad request");
         return new ResponseEntity<>(companyResponse, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(PostNotFoundException.class)
+    public ResponseEntity<Map<String, Object>> handlePostNotFoundException(PostNotFoundException exception) {
+        Map<String, Object> postResponse = new HashMap<>();
+        postResponse.put("status", HttpStatus.BAD_REQUEST.value());
+        postResponse.put("message", exception.getMessage());
+        postResponse.put("timestamp", LocalDateTime.now());
+        postResponse.put("error", "bad request");
+        return new ResponseEntity<>(postResponse, HttpStatus.BAD_REQUEST);
     }
 }
