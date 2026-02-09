@@ -3,7 +3,6 @@ package com.mylinkedin.first_project.controllers;
 import com.mylinkedin.first_project.exceptions.PostNotFoundException;
 import com.mylinkedin.first_project.models.Post;
 import com.mylinkedin.first_project.services.PostService;
-import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
