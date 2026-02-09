@@ -1,5 +1,6 @@
 package com.mylinkedin.first_project.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import org.springframework.data.neo4j.core.schema.GeneratedValue;
 import org.springframework.data.neo4j.core.schema.Id;
@@ -25,4 +26,7 @@ public class User {
     private Company company;
     @Relationship(type = "CREATED", direction = Relationship.Direction.OUTGOING)
     private List<Post> post = new ArrayList<>();
+    @JsonIgnore
+    @Relationship(type = "FOLLOWS", direction = Relationship.Direction.OUTGOING)
+    private List<User> follows = new ArrayList<>();
 }

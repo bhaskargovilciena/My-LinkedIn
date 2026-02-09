@@ -4,7 +4,6 @@ import com.mylinkedin.first_project.exceptions.PostNotFoundException;
 import com.mylinkedin.first_project.exceptions.UserNotFoundException;
 import com.mylinkedin.first_project.models.Post;
 import com.mylinkedin.first_project.models.User;
-import com.mylinkedin.first_project.relationships.Created;
 import com.mylinkedin.first_project.services.PostService;
 import com.mylinkedin.first_project.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;

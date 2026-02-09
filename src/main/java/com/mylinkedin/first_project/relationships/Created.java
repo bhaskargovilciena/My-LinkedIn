@@ -7,6 +7,9 @@ import org.springframework.data.neo4j.core.schema.Id;
 import org.springframework.data.neo4j.core.schema.RelationshipProperties;
 import org.springframework.data.neo4j.core.schema.TargetNode;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @RelationshipProperties
 @Data
 public class Created {
@@ -14,5 +17,5 @@ public class Created {
     private String id;
 
     @TargetNode
-    private Post post;
+    private List<Post> posts = new ArrayList<>();
 }
