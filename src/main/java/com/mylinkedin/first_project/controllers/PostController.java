@@ -1,8 +1,12 @@
 package com.mylinkedin.first_project.controllers;
 
 import com.mylinkedin.first_project.exceptions.PostNotFoundException;
+import com.mylinkedin.first_project.exceptions.UserNotFoundException;
 import com.mylinkedin.first_project.models.Post;
+import com.mylinkedin.first_project.models.User;
+import com.mylinkedin.first_project.relationships.Created;
 import com.mylinkedin.first_project.services.PostService;
+import com.mylinkedin.first_project.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,10 +19,12 @@ import java.util.List;
 @RequestMapping("/post")
 public class PostController {
     private final PostService service;
+    private final UserService userService;
 
     @Autowired
-    public PostController(PostService service) {
+    public PostController(PostService service, UserService userService) {
         this.service = service;
+        this.userService = userService;
     }
 
     @GetMapping("/{postId}")
@@ -26,9 +32,13 @@ public class PostController {
         return new ResponseEntity<>(service.getPost(postId), HttpStatus.OK);
     }
 
-    @PostMapping()
-    public ResponseEntity<Post> createPost(@RequestBody Post post) {
-        return new ResponseEntity<>(service.createPost(post), HttpStatus.OK);
+    @PostMapping("/{username}")
+    public ResponseEntity<Post> createPost(@RequestBody Post post, @PathVariable String username) throws UserNotFoundException {
+        User user = userService.getUser(username);
+        service.createPost(post);
+        user.getPost().add(post);
+        userService.updateUser(username, user);
+        return new ResponseEntity<>(post, HttpStatus.OK);
     }
 
     @PutMapping("/{postId}")

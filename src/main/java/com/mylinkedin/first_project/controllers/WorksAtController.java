@@ -4,7 +4,6 @@ import com.mylinkedin.first_project.exceptions.CompanyNotFoundException;
 import com.mylinkedin.first_project.exceptions.UserNotFoundException;
 import com.mylinkedin.first_project.models.Company;
 import com.mylinkedin.first_project.models.User;
-import com.mylinkedin.first_project.relationships.WorksAt;
 import com.mylinkedin.first_project.services.WorksAtService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -31,7 +30,7 @@ public class WorksAtController {
     }
 
     @GetMapping("/{username}")
-    public ResponseEntity<WorksAt> getWorksAt(@PathVariable String username) throws UserNotFoundException {
+    public ResponseEntity<Company> getWorksAt(@PathVariable String username) throws UserNotFoundException {
         return new ResponseEntity<>(service.getWorksAt(username), HttpStatus.OK);
     }
 }

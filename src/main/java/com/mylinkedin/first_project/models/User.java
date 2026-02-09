@@ -1,6 +1,5 @@
 package com.mylinkedin.first_project.models;
 
-import com.mylinkedin.first_project.relationships.WorksAt;
 import lombok.Data;
 import org.springframework.data.neo4j.core.schema.GeneratedValue;
 import org.springframework.data.neo4j.core.schema.Id;
@@ -8,6 +7,8 @@ import org.springframework.data.neo4j.core.schema.Node;
 import org.springframework.data.neo4j.core.schema.Relationship;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Node
 @Data
@@ -21,5 +22,7 @@ public class User {
     private String bio;
     private String profileStatus;
     @Relationship(type = "WORKS_AT", direction = Relationship.Direction.OUTGOING)
-    private WorksAt company;
+    private Company company;
+    @Relationship(type = "CREATED", direction = Relationship.Direction.OUTGOING)
+    private List<Post> post = new ArrayList<>();
 }

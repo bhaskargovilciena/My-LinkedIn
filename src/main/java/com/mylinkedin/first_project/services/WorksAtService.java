@@ -4,7 +4,6 @@ import com.mylinkedin.first_project.exceptions.CompanyNotFoundException;
 import com.mylinkedin.first_project.exceptions.UserNotFoundException;
 import com.mylinkedin.first_project.models.Company;
 import com.mylinkedin.first_project.models.User;
-import com.mylinkedin.first_project.relationships.WorksAt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,14 +21,12 @@ public class WorksAtService {
     public User setWorksAt(String username, String companyName) throws UserNotFoundException, CompanyNotFoundException {
         User user = userService.getUser(username);
         Company company = companyService.getCompany(companyName);
-        WorksAt worksAt = new WorksAt();
-        worksAt.setCompany(company);
-        user.setCompany(worksAt);
+        user.setCompany(company);
         userService.updateUser(username, user);
         return user;
     }
 
-    public WorksAt getWorksAt(String username) throws UserNotFoundException {
+    public Company getWorksAt(String username) throws UserNotFoundException {
         User user = userService.getUser(username);
         return user.getCompany();
     }

@@ -21,13 +21,13 @@ public class UserService {
         return userRepository.save(user);
     }
 
-    public User updateUser(String username, User user) throws UserNotFoundException {
-        User newUser = user;
-        User oldUser = userRepository.findUserByUsername(username);
-        if(oldUser == null) throw new UserNotFoundException(username);
-        userRepository.delete(oldUser);
-        newUser = userRepository.save(newUser);
-        return newUser;
+    public User updateUser(String username, User updatedUser) throws UserNotFoundException {
+        User user = userRepository.findUserByUsername(username);
+        if(user == null) throw new UserNotFoundException(username);
+        System.out.println("old user" + user);
+        System.out.println("new user " + updatedUser);
+        userRepository.delete(user);
+        return userRepository.save(updatedUser);
     }
 
     public User getUser(String username) throws UserNotFoundException {
