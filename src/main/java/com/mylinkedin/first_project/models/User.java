@@ -6,14 +6,17 @@ import org.springframework.data.neo4j.core.schema.GeneratedValue;
 import org.springframework.data.neo4j.core.schema.Id;
 import org.springframework.data.neo4j.core.schema.Node;
 import org.springframework.data.neo4j.core.schema.Relationship;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 @Node
 @Data
-public class User {
+public class User implements UserDetails {
     @Id @GeneratedValue
     private Long id;
     private String name;
@@ -29,4 +32,9 @@ public class User {
     @JsonIgnore
     @Relationship(type = "FOLLOWS", direction = Relationship.Direction.OUTGOING)
     private List<User> follows = new ArrayList<>();
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return List.of();
+    }
 }
